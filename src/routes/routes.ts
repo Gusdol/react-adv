@@ -1,14 +1,13 @@
 import { lazy, LazyExoticComponent } from "react";
 import { NoLazy } from "../01-lazyload/pages/NoLazy";
 
-type JSXcomponent = () => JSX.Element;
+type JSXComponent = () => JSX.Element;
 
-// no es recomendable que empiezen con la letra mayuscula la interfaces
 interface Route {
-  path: string;
-  component: LazyExoticComponent<JSXcomponent> | JSXcomponent;
-  name: String;
-  children?: Route[];
+    path: string;
+    component: LazyExoticComponent<JSXComponent> | JSXComponent,
+    name: string;
+    children?: Route[]
 }
 // lazy en una funcion que regresa una promesa
 // const LazyPage1 = lazy(

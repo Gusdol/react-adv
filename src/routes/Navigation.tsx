@@ -29,9 +29,8 @@ export const Navigation = () => {
           </nav>
 
           {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
+              renders the first one that matches the current URL. */}
           <Switch>
-            {/* dentro de una desestrucutacion se puede renombrar el nombre con los dos puntos : */}
             {routes.map(({ path, component: Component }) => (
               <Route key={path} path={path} render={() => <Component />} />
             ))}
