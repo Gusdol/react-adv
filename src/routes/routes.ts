@@ -1,42 +1,28 @@
-import { lazy, LazyExoticComponent } from "react";
+import { LazyExoticComponent } from 'react';
+import { lazy } from 'react'
 
-type JSXcomponent = () => JSX.Element;
+import { NoLazy } from '../01-lazyload/pages/NoLazy';
 
-// no es recomendable que empiezen con la letra mayuscula la interfaces
+type JSXComponent = () => JSX.Element;
+
 interface Route {
-  path: string;
-  component: LazyExoticComponent<JSXcomponent> | JSXcomponent;
-  name: String;
-  children?: Route[];
+    path: string;
+    component: LazyExoticComponent<JSXComponent> | JSXComponent,
+    name: string;
+    children?: Route[]
 }
-// lazy en una funcion que regresa una promesa
-const LazyPage1 = lazy(
-  () =>
-    import(/* webpackChunkName: "LazyPage1" */ "../01-lazyload/pages/LazyPage1")
-);
-const LazyPage2 = lazy(
-  () =>
-    import(/* webpackChunkName: "LazyPage2" */ "../01-lazyload/pages/LazyPage2")
-);
-const LazyPage3 = lazy(
-  () =>
-    import(/* webpackChunkName: "LazyPage3" */ "../01-lazyload/pages/LazyPage3")
-);
+
 
 export const routes: Route[] = [
-  {
-    path: "/lazy1",
-    component: LazyPage1,
-    name: "LazyPage-1",
-  },
-  {
-    path: "/lazy2",
-    component: LazyPage2,
-    name: "LazyPage-2",
-  },
-  {
-    path: "/lazy3",
-    component: LazyPage3,
-    name: "LazyPage-3",
-  },
-];
+    {
+        path: '/lazyload',
+        component: lazy( () => import(/* webpackChunkName: "LazyLayout" */ '../01-lazyload/layout/LazyLayout') ),
+        name: 'LazyLoading Nested'
+    },
+    {
+        path: '/no-lazy',
+        component: NoLazy,
+        name: 'No Lazy loading'
+    }
+   
+]
